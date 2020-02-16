@@ -2,9 +2,34 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>タイトル</title>
+  <title>itunes検索</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
 </head>
 <body>
-
+  <div class="container-fluid">
+  <form class="form-inline" action="/">
+    <input type="text" name="keyword" class="form-control">
+    <input type="submit" class="form-control">
+  </form>
+    <% if !@musics.empty? %>
+      <div class="row">
+        <% @musics.each do |music| %>
+          <div class="col-lg-3 col-xs-3 col-sm-3 col-md-3">
+            <div class="card">
+              <img src="<%= music["artworkUrl100"] %>" class="card-img-top">
+                <div class="card-body">
+                  <p><%= music["artistName"] %></p>
+                  <p><%= music["collectionName"] %></p>
+                  <p><%= music["trackName"] %></p>
+                  <a href="<%= music["previewUrl"] %>">サンプル</a>
+                </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <% else %>
+        検索結果がありません
+    <% end%>
+  </div>
 </body>
 </html>
